@@ -8,12 +8,14 @@
   <img class="icon logo" src="../../../assets/icon/logo.png" />
   <ion-item class="e1">
     <ion-label position="floating">Email: </ion-label>
-    <ion-input type="text" name="email"></ion-input>
+    <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
   </ion-item>
   <ion-item class="e2">
     <ion-label position="floating">Contraseña: </ion-label>
-    <ion-input type="password" name="contra"></ion-input>
+    <ion-input type="password" [(ngModel)]="contra" name="contra"></ion-input>
   </ion-item>
   <br />
-  <ion-button expand="block">Aceptar</ion-button>
+  <ion-button (click)="iniciarSesion()" expand="block">Aceptar</ion-button>
+  <h3>Email: {{email}}</h3>
+  <h3>Contra: {{contra}}</h3>
 </ion-content>
