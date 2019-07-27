@@ -18,7 +18,15 @@ export class LoginPage implements OnInit {
   iniciarSesion() {
     this.auth
       .iniciarSesion(this.email, this.contra)
-      .then(res => this.router.navigate(["/home"]))
+      .then(res =>{
+        this.limpiarCampos();
+        this.router.navigate(["/home"])
+      })
       .catch(error => alert("¡Datos inválidos!"));
+  }
+
+  limpiarCampos() {
+    this.email = "";
+    this.contra = "";
   }
 }
