@@ -17,6 +17,7 @@ import {
   FirestoreSettingsToken
 } from "@angular/fire/firestore";
 import { ChatComponent } from "./componentes/chat/chat.component";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, ChatComponent],
@@ -27,7 +28,8 @@ import { ChatComponent } from "./componentes/chat/chat.component";
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule
   ],
   providers: [
     StatusBar,

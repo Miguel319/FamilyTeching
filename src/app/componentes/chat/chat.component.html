@@ -2,10 +2,13 @@
   <ion-toolbar color="tertiary">
     <ion-toolbar slot="start" fill="clear" (click)="cerrarChat()">
       <ion-button>
-        <ion-icon name="close"></ion-icon>
+        <ion-icon
+          style="color: #fff; font-size: 25px;"
+          name="arrow-round-back"
+        ></ion-icon>
       </ion-button>
       <ion-title>
-        {{ name }}
+        {{ chat?.nombre }}
       </ion-title>
     </ion-toolbar>
   </ion-toolbar>
@@ -13,10 +16,14 @@
 
 <ion-content padding> </ion-content>
 
+<ul *ngIf="sala">
+  <li *ngFor="let mensaje of sala.mensajes">{{ mensaje?.contenido }}</li>
+</ul>
+
 <ion-footer padding>
   <ion-item>
-    <ion-textarea></ion-textarea>
-    <ion-button color="success">
+    <ion-textarea [(ngModel)]="msg"></ion-textarea>
+    <ion-button color="success" (click)="enviarMensaje()">
       <ion-icon name="send"> </ion-icon>
     </ion-button>
   </ion-item>
