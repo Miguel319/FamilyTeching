@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./guards/auth.guard";
-import { NoLoginGuard } from './guards/no-login.guard';
+import { NoLoginGuard } from "./guards/no-login.guard";
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -14,6 +14,11 @@ const routes: Routes = [
   {
     path: "login",
     loadChildren: "./componentes/login/login.module#LoginPageModule",
+    canActivate: [NoLoginGuard]
+  },
+  {
+    path: "registro",
+    loadChildren: "./componentes/registro/registro.module#RegistroPageModule",
     canActivate: [NoLoginGuard]
   }
 ];

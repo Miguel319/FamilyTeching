@@ -1,11 +1,17 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title text-center>Iniciar sesión</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title text-center>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <img class="icon logo" src="../../../assets/icon/logo.png" />
+
+   <ion-item class="e1">
+    <ion-label position="floating">Nombre: </ion-label>
+    <ion-input type="text" [(ngModel)]="nombre" name="nombre"></ion-input>
+  </ion-item>
+
   <ion-item class="e1">
     <ion-label position="floating">Email: </ion-label>
     <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
@@ -15,8 +21,7 @@
     <ion-input type="password" [(ngModel)]="contra" name="contra"></ion-input>
   </ion-item>
   <br />
-  <ion-button (click)="iniciarSesion()" expand="block">Aceptar</ion-button>
-
-  <br>
-  <p text-center [routerLink]="['/registro']" >Registrar miembro de la familia</p>
+  <ion-button color="secondary" expand="block" (click)="registrarse()">Registrarse</ion-button>
+  <br />
+  <p text-center [routerLink]="['/login']">Iniciar sesión</p>
 </ion-content>
