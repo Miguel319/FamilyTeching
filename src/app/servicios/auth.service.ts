@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { reject } from "q";
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: "root"
@@ -38,13 +38,20 @@ export class AuthService {
         .then(data => {
           //console.log(data.user.uid);
           const uid = data.user.uid;
-          this.db.collection("usuarios").doc(uid).set({
-            nombre: nombre,
-            uid: uid
-          })
+          this.db
+            .collection("usuarios")
+            .doc(uid)
+            .set({
+              nombre: nombre,
+              uid: uid
+            });
           res(data);
         })
         .catch(err => reject(err));
     });
+  }
+
+  obtenerUsuarioActual() {
+    return this.angularFireAuth.auth.currentUser.providerData[0].uid;
   }
 }

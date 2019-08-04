@@ -1,7 +1,40 @@
 ion-content {
-    --background: #d9e7ff;
+    --background: #FFF;;
 }
 
 ion-card {
     --background: #fff;
+}
+
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+}
+
+.other-message {
+    background: var(--ion-color-tertiary);
+    color: #fff;
+}
+
+.my-message {
+    background: var(--ion-color-secondary);
+    color: #fff;
+}
+
+.msg-btn {
+    width: 100%;
+    border: 1px solid var(--ion color-medium);
+    border-radius: 10px;
+    background: #fff;
+    resize: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.message-input {
+    --pading-start: 0.5em;
+    --padding-end: 0.5em;
 }

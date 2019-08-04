@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { NavParams, ModalController } from "@ionic/angular";
-import { Mensaje } from 'src/app/modelos/mensaje';
-import { ChatsService } from 'src/app/servicios/chats.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { NavParams, ModalController, IonContent } from "@ionic/angular";
+import { Mensaje } from "src/app/modelos/mensaje";
+import { ChatsService } from "src/app/servicios/chats.service";
+import { AuthService } from "src/app/servicios/auth.service";
 
 @Component({
   selector: "app-chat",
@@ -13,22 +14,31 @@ export class ChatComponent implements OnInit {
   public mensajes = [];
   public sala: any;
   public msg: string;
+  public usuario: any;
+  @ViewChild(IonContent, { static: false }) content: IonContent;
 
   constructor(
-    private navParams: NavParams, 
-    private modal: ModalController, 
-    private chatsServicio: ChatsService) {}
+    private navParams: NavParams,
+    private modal: ModalController,
+    private chatsServicio: ChatsService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit() {
-    this.chatsServicio.obtenerSalaDeChat(this.chat.id)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.sala = res;
-        }
-      )
-      
+    this.usuario = this.auth
+      .obtenerUsuarioActual()
+      .substring(0, this.auth.obtenerUsuarioActual().indexOf("@"));
+
+    console.log(this.usuario);
+
+    this.chatsServicio.obtenerSalaDeChat(this.chat.id).subscribe(res => {
+      console.log(res);
+      this.sala = res;
+    });
+
     this.chat = this.navParams.get("chat");
+
+   // this.content.scrollToBottom(600);
   }
 
   cerrarChat() {
@@ -39,12 +49,20 @@ export class ChatComponent implements OnInit {
     /*this.mensajes.push(this.mensaje);
     this.mensaje.contenido = "";*/
 
-    const mensaje : Mensaje = {
+    const mensaje: Mensaje = {
       contenido: this.msg,
-      tipo: 'text',
-      fecha: new Date()
-    }
+      tipo: "Text",
+      fecha: new Date().getDate(),
+      usuario: this.auth
+        .obtenerUsuarioActual()
+        .substring(0, this.auth.obtenerUsuarioActual().indexOf("@"))
+    };
 
+    this.msg = "";
+
+    /*setTimeout(() => {
+      this.content.scrollToBottom(600);
+    });*/
     this.chatsServicio.enviarMensajeAFirebase(mensaje, this.chat.id);
   }
 }

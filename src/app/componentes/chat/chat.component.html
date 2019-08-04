@@ -1,28 +1,87 @@
 <ion-header>
-  <ion-toolbar color="tertiary">
-    <ion-toolbar slot="start" fill="clear" (click)="cerrarChat()">
-      <ion-button>
-        <ion-icon
-          style="color: #fff; font-size: 25px;"
-          name="arrow-round-back"
-        ></ion-icon>
-      </ion-button>
-      <ion-title>
-        {{ chat?.nombre }}
-      </ion-title>
-    </ion-toolbar>
+  <ion-toolbar text-center color="primary">
+    <ion-button slot="start" fill="clear" (click)="cerrarChat()">
+      <ion-icon
+        style="color: #fff;font-size: 25px;"
+        name="arrow-round-back"
+      ></ion-icon>
+    </ion-button>
+    <ion-title>
+      {{ chat?.nombre }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding> </ion-content>
+<ion-content *ngIf="sala">
+  <ion-grid>
+    <ion-row *ngFor="let mensaje of sala.mensajes">
+      <ion-col
+        size="9"
+        *ngIf="usuario !== mensaje.usuario"
+        class="message other-message"
+      >
+        <b>{{ mensaje?.usuario | titlecase }}</b>
+        <br />
+        <span>{{ mensaje?.contenido }}</span>
+        <div clas="time" text-right>
+          <!--<p>{{ mensaje?.fecha | date}}</p>-->
+        </div>
+      </ion-col>
+      <ion-col
+        offset="3"
+        size="9"
+        *ngIf="usuario == mensaje.usuario"
+        class="message my-message"
+      >
+        <b>{{ mensaje?.usuario | titlecase }}</b>
+        <br />
+        <span>{{ mensaje?.contenido }}</span>
+        <div clas="time" text-right>
+          <!--<p>{{ mensaje?.fecha }}</p>-->
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!--<ion-content padding> </ion-content>
 
 <div *ngIf="sala">
   <ion-card *ngFor="let mensaje of sala.mensajes">
-    <ion-card-content >
+    <ion-card-content>
       {{ mensaje?.contenido }}
     </ion-card-content>
   </ion-card>
 </div>
+-->
+
+<!--
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row align-items-center no-padding>
+      <ion-col size="10">
+        <textarea
+          autosize
+          maxRows="3"
+          [(ngModel)]="msg"
+          class="message-input"
+        ></textarea>
+      </ion-col>
+
+      <ion-col size="2">
+        <ion-button
+          expand="block"
+          fill="clear"
+          color="success"
+          [disabled]="msg === ''"
+          class="msg-btn"
+          (click)="enviarMensaje()"
+        >
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer> -->
 
 <ion-footer padding>
   <ion-item>

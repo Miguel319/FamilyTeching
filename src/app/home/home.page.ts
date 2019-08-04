@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../servicios/auth.service";
 import { ChatsService } from "../servicios/chats.service";
-import { Chat } from "../modelos/chat.model";
 import { ModalController, ActionSheetController } from "@ionic/angular";
 import { ChatComponent } from "../componentes/chat/chat.component";
 

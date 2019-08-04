@@ -17,7 +17,7 @@ import {
   FirestoreSettingsToken
 } from "@angular/fire/firestore";
 import { ChatComponent } from "./componentes/chat/chat.component";
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent, ChatComponent],
